@@ -1,1 +1,74 @@
+import random
+
+class Tamagotchi:
+  def __init__(self, name, onaka, kigen, IQ, yoiko, health):
+    self.name = name
+    self.onaka = onaka
+    self.kigen = kigen
+    self.IQ = IQ
+    self.yoiko = yoiko
+    self.health = health
+
+  def gohan(self):
+    print(f"{self.name}にごはんをあげた！")
+    self.onaka += 3
+    self.health += 1
+
+  def play(self):
+    print(f"{self.name}とあそんだ！ Happy!")
+    self.kigen += 3
+    self.health += 1
+    self.onaka -= 1
+    self.yoiko -= 1
+
+  def teach(self):
+    print(f"{self.name}にべんきょうをおしえた！")
+    self.IQ += 3
+    self.kigen -= 1
+    self.health -= 1
+
+  def shituke(self):
+    print(f"{self.name}をしつけた!")
+    self.yoiko += 3
+    self.health -= 1
+
+  def clean(self):
+    print(f"{self.name}のトイレを掃除した!")
+    self.health += 3
+    self.IQ -= 1
+
+  def chiryo(self):
+    print(f"{self.name}をびょういんにつれていった...次からはちゃんとお世話してね")
+    self.health += 5
+    self.onaka += 2
+    self.kigen += 2
+
+  def action(self):
+    print("\n1:ごはん\n2:あそぶ\n3:べんきょう\n4:しつけ\n5:そうじ")
+    choice = int(input(こうどうを選んでね: ))
+    if choice == 1:
+      self.gohan
+    elif choice == 2:
+      self.play
+    elif choice == 3:
+      self.teach
+    elif choice == 4:
+      self.shituke
+    else:
+      self.clean 
+
+
+def game_start(tamagotchi):
+  while True:
+    if tamagotchi.health == 0:
+      print(f"{tamagotchi.name}はびょうきになった...びょういんにつれていかなきゃ")
+      if random.randint(1, 100) <= 10:
+        print(f"ざんねん...{tamagotchi.name}はお星さまになった...")
+        break
+      else:
+        tamagotchi.chiryo
+    elif tamagotchi.onaka < 3 or tamagotchi.kigen < 3:
+      tamagotchi.health -= 3
+      
+    tamagotchi.action
 
