@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+掲示板のトップページ
+{% endblock %}
+
+{% block header %}
+掲示板のトップページ - {{login_user_name}}
+{% endblock %}
+
+{% block contents %}
+<section>
+  <form action="{{url_for('index')}}" method="GET">
+    <input type="search" name="search_word" value="{{search_word}}"></label>
+    <input type="submit" value="検索">
+  </form>
+</section>
+<section>
+  <!-- 繰り返し機能を使ってmessage_listの要素を表示 -->
+  {% for message in message_list %}
+  <article>
+    <p>{{message.id}} - {{message.user_name}}</p>
+    <p>{{message.contents}}</p>
+  </article>
+  {% endfor %}
+</section>
+{% endblock %}
