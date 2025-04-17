@@ -75,7 +75,7 @@ def update(message_id: int):
     return redirect(url_for("index"))
   
 # 削除機能のルーティング
-@app.route("delete/<int:message_id>")
+@app.route("/delete/<int:message_id>")
 def delete(message_id: int):
   message: Message = Message.query.get(message_id)
   #メッセージを削除
